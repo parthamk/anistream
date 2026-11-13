@@ -1,3 +1,4 @@
+
 import {
   Routes,
   Route,
@@ -22,17 +23,19 @@ import Library from './pages/Library'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import AdminSources from './pages/AdminSources'
-import AdminFeed from './pages/AdminFeed'
 import NotFound from './pages/NotFound'
 
 function AppLayout() {
   return (
     <div className="flex min-h-screen flex-col bg-dark-950">
       <Navbar />
+
       <div className="flex-1">
         <Outlet />
       </div>
+
       <Footer />
+
       <Toast />
     </div>
   )
@@ -42,25 +45,58 @@ function AppRoutes() {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/anime/:id" element={<AnimeDetail />} />
-        <Route path="/watch/:animeId/:episode" element={<Watch />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/search"
+          element={<Search />}
+        />
+
+        <Route
+          path="/anime/:id"
+          element={<AnimeDetail />}
+        />
+
+        <Route
+          path="/watch/:animeId/:episode"
+          element={<Watch />}
+        />
+
         <Route
           path="/library"
-          element={<ProtectedRoute><Library /></ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <Library />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/signup"
+          element={<Signup />}
+        />
+
         <Route
           path="/admin/sources"
-          element={<AdminRoute><AdminSources /></AdminRoute>}
+          element={
+            <AdminRoute>
+              <AdminSources />
+            </AdminRoute>
+          }
         />
+
         <Route
-          path="/admin/feed"
-          element={<AdminRoute><AdminFeed /></AdminRoute>}
+          path="*"
+          element={<NotFound />}
         />
-        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )
