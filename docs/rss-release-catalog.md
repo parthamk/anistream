@@ -25,7 +25,7 @@ Redeploy after adding variables.
 
 ## 3. Scheduling
 
-Vercel Cron invokes `/api/rss-sync` hourly in production. The endpoint accepts GET only with `Authorization: Bearer <CRON_SECRET>`. The admin page can also trigger a POST using the current Supabase session; the server verifies the user and their `profiles.is_admin` flag before syncing.
+Vercel Cron invokes `/api/rss-sync` daily at 03:00 UTC (the Hobby-compatible schedule). Vercel Hobby may run a daily cron at any point within the scheduled hour; schedules more frequent than once per day require a plan that supports sub-daily cron. The endpoint accepts GET only with `Authorization: Bearer <CRON_SECRET>`. The admin page can also trigger a POST using the current Supabase session; the server verifies the user and their `profiles.is_admin` flag before syncing.
 
 For local manual testing, run `vercel dev` with the server environment variables configured, then visit the admin page at `/admin/feed` and select **Sync RSS now**. Vite's regular dev server does not execute Vercel Functions.
 
